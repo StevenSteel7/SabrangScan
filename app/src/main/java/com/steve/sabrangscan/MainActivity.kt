@@ -3,10 +3,12 @@ package com.steve.sabrangscan
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
+import com.steve.sabrangscan.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private val cameraPermission = android.Manifest.permission.CAMERA
+    private lateinit var binding : ActivityMainBinding
 
     private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()){
             isGranted ->if(isGranted){
@@ -18,7 +20,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        //////
+        binding.button.setOnClickListener{
+            requestCameraAndStartScanner()
+        }
     }
 
 
