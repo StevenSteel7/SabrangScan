@@ -1,5 +1,7 @@
 package com.steve.sabrangscan
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.camera.core.CameraSelector
@@ -46,6 +48,15 @@ class ScannerActivity : AppCompatActivity() {
         processCameraProvider.bindToLifecycle(this,cameraSelector,cameraPreview)
     }
 
+
+    // to start activity activity from main acivity... and scanner se main mei values pass bhi krna heu..
+    companion object{
+        fun startScanner(context: Context, onScan:()->Unit){
+         Intent(context, ScannerActivity::class.java).also{
+             context.startActivity(it)
+         }
+        }
+    }
 
 
 }

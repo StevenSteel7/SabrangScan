@@ -13,6 +13,9 @@ class MainActivity : AppCompatActivity() {
     private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()){
             isGranted ->if(isGranted){
         //start Scanner
+                //if permission is given
+        startScanner() //call this which we created below..
+
     }
 
     }
@@ -38,6 +41,12 @@ class MainActivity : AppCompatActivity() {
 
         else {
             requestCameraPermission()
+        }
+
+    }
+    private fun startScanner(){
+        ScannerActivity.startScanner(this){
+            //here we get scanned values
         }
 
     }
